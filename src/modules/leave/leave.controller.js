@@ -2,28 +2,17 @@ import Leave from './model/leave.model.js'
 
 const checkOverlappingLeaves = async (partnerId, startDate, endDate, slots) => {
     const leaves = await Leave.find({ partnerId, status: { $ne: 'DENIED' } });
-
-    if ((new Date(startDate) + "") === (new Date(endDate) + "")) {
-        for (const leave of leaves) {
-            if ((new Date(leave.startDate) + "" === (new Date(startDate) + "")) && (new Date(leave.startDate) + "" === (new Date(leave.endDate) + "")) && (leave.slots[0].start === slots[0].start) && (leave.slots[0].end === slots[0].end)) {
-                return true;
-            }
-            if ((new Date(leave.startDate) + "" === (new Date(startDate) + "")) && (new Date(leave.startDate) + "" !== (new Date(leave.endDate) + ""))) {
-                return true;
-            }
-            //startDate should not be in range leave.startDate to leave.endDate
-            if (new Date(leave.startDate) <= new Date(startDate) && new Date(leave.endDate) >= new Date(startDate)) {
-                return true;
-            }
-
-        }
-    }
-    if ((new Date(startDate) + "") === (new Date(endDate) + "")) {
-        return false
-    }
-    console.log(leaves)
     for (const leave of leaves) {
-        if (new Date(startDate) <= new Date(leave.endDate) && new Date(endDate) >= new Date(leave.startDate)) {
+        if ((new Date(startDate).getTime()=== new Date(leave.startDate).getTime()) && (new Date(endDate).getTime()=== new Date(leave.endDate).getTime())){
+                for (const slot of leave.slots) {
+                    for (const newSlot of slots) {
+                        if (slot.start === newSlot.start && slot.end === newSlot.end) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        else if (new Date(startDate) <= new Date(leave.endDate) && new Date(endDate) >= new Date(leave.startDate)) {
             return true;
         }
     }
