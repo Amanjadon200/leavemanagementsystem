@@ -30,7 +30,7 @@ jobs:
           sonar-scanner \
             -Dsonar.projectKey=leavemanagement
             -Dsonar.sources=. \
-            -Dsonar.host.url=http://localhost:9000 \ 
+            -Dsonar.host.url= https://c791-202-66-164-64.ngrok-free.app \ 
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
 
       # Step 5: Start the application (run the nodemon command)
