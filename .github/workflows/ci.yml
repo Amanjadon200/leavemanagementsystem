@@ -35,10 +35,3 @@ jobs:
           npm install -g sonar-scanner # Install Sonar Scanner
           sonar-scanner -Dsonar.projectKey=leavemanagement -Dsonar.sources=. -Dsonar.host.url=https://53c4-202-66-164-64.ngrok-free.app -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
-
-      # Step 5: Start the application (run the nodemon command)
-      - name: Run Application
-        env:
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-          PORT: ${{ secrets.PORT }} # Set PORT to 3000
-        run: npm start
