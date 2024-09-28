@@ -38,4 +38,7 @@ jobs:
 
       # Step 5: Start the application (run the nodemon command)
       - name: Run Application
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          PORT: ${{ secrets.PORT }} # Set PORT to 3000
         run: npm start
