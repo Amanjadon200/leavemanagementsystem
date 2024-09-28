@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Partner from './modules/partner/model/partner.model.js';
 
 dotenv.config();
 

@@ -35,7 +35,7 @@ const createLeave = async (req, res) => {
         // Check for overlapping leaves
         const isOverlapping = await checkOverlappingLeaves(partnerId, startDate, endDate, slots);
         if (isOverlapping) {
-            return res.status(400).json({ statusCode: 400, data: null, error: 'Leave period overlaps with existing leave', message: 'Error creating leave' });
+            return res.status(200).json({ statusCode: 400, data: null, error: 'Leave period overlaps with existing leave', message: 'Error creating leave' });
         }
         const leave = await Leave.create({ partnerId, startDate, endDate, slots });
 
