@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -34,9 +34,9 @@ jobs:
         run: |
           npm install -g sonar-scanner # Install Sonar Scanner
           sonar-scanner \
-            -Dsonar.projectKey=leavemanagement
+            -Dsonar.projectKey=leavemanagement \
             -Dsonar.sources=. \
-            -Dsonar.host.url=  https://53c4-202-66-164-64.ngrok-free.app \ 
+            -Dsonar.host.url=https://53c4-202-66-164-64.ngrok-free.app \ 
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} 
 
       # Step 5: Start the application (run the nodemon command)
